@@ -1,0 +1,58 @@
+{
+    "sourceFile": "app.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1736688998796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1736689023182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n const express=require('express');\r\n const app=express();\r\n const cors=require(\"cors\");\r\n require('./Conn/conn');\r\n+const path = require(\"path\");\r\n const auth=require('./Router/auth');\r\n const List=require('./Router/list');\r\n-const path = require(\"path\");\r\n \r\n+\r\n app.use(express.json()); \r\n app.use(cors()); \r\n app.use(express.urlencoded({extended:false}));\r\n \r\n"
+                },
+                {
+                    "date": 1736689103212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n app.get(\"/\",(req,res)=>{\r\n   res.send(\"Hello\")\r\n })\r\n app.get(\"/\", (req, res) => {\r\n-  app.use(express.static(path.resolve(_dirname, \"frontend\", \"build\")));\r\n-  res.sendFile(path.resolve(_dirname, \"frontend\", \"build\", \"index.html\"));\r\n+  app.use(express.static(path.resolve(_dirname, \"Frontend\", \"build\")));\r\n+  res.sendFile(path.resolve(_dirname, \"Frontend\", \"build\", \"index.html\"));\r\n   });\r\n app.listen(8000,()=>{\r\n   console.log(\"server Started\");\r\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1736689326125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,9 @@\n \r\n app.use(\"/api/viv\",auth)\r\n app.use(\"/api/list\",List);\r\n \r\n-app.get(\"/\",(req,res)=>{\r\n-  res.send(\"Hello\")\r\n-})\r\n+\r\n app.get(\"/\", (req, res) => {\r\n   app.use(express.static(path.resolve(_dirname, \"Frontend\", \"build\")));\r\n   res.sendFile(path.resolve(_dirname, \"Frontend\", \"build\", \"index.html\"));\r\n   });\r\n"
+                },
+                {
+                    "date": 1736689420622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,25 @@\n-const express=require('express');\r\n-const app=express();\r\n-const cors=require(\"cors\");\r\n+const express = require('express');\r\n+const app = express();\r\n+const cors = require(\"cors\");\r\n require('./Conn/conn');\r\n const path = require(\"path\");\r\n-const auth=require('./Router/auth');\r\n-const List=require('./Router/list');\r\n+const auth = require('./Router/auth');\r\n+const List = require('./Router/list');\r\n \r\n+app.use(express.json());\r\n+app.use(cors());\r\n+app.use(express.urlencoded({ extended: false }));\r\n \r\n-app.use(express.json()); \r\n-app.use(cors()); \r\n-app.use(express.urlencoded({extended:false}));\r\n+app.use(\"/api/viv\", auth);\r\n+app.use(\"/api/list\", List);\r\n \r\n-app.use(\"/api/viv\",auth)\r\n\\ No newline at end of file\n-app.use(\"/api/list\",List);\r\n \r\n \r\n app.get(\"/\", (req, res) => {\r\n-  app.use(express.static(path.resolve(_dirname, \"Frontend\", \"build\")));\r\n-  res.sendFile(path.resolve(_dirname, \"Frontend\", \"build\", \"index.html\"));\r\n-  });\r\n-app.listen(8000,()=>{\r\n-  console.log(\"server Started\");\r\n-})\n+  app.use(express.static(path.resolve(__dirname, \"Frontend\", \"build\")));  // Use __dirname here\r\n+  res.sendFile(path.resolve(__dirname, \"Frontend\", \"build\", \"index.html\")); // Use __dirname here\r\n+});\r\n+\r\n+app.listen(8000, () => {\r\n+  console.log(\"Server Started\");\r\n+});\r\n"
+                },
+                {
+                    "date": 1736689451535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \r\n \r\n app.get(\"/\", (req, res) => {\r\n   app.use(express.static(path.resolve(__dirname, \"Frontend\", \"build\")));  // Use __dirname here\r\n-  res.sendFile(path.resolve(__dirname, \"Frontend\", \"build\", \"index.html\")); // Use __dirname here\r\n+  res.sendFile(path.resolve(__dirname, \"Frontend\", \"dist\", \"index.html\")); // Use __dirname here\r\n });\r\n \r\n app.listen(8000, () => {\r\n   console.log(\"Server Started\");\r\n"
+                },
+                {
+                    "date": 1736689516016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,10 @@\n \r\n \r\n \r\n app.get(\"/\", (req, res) => {\r\n-  app.use(express.static(path.resolve(__dirname, \"Frontend\", \"build\")));  // Use __dirname here\r\n-  res.sendFile(path.resolve(__dirname, \"Frontend\", \"dist\", \"index.html\")); // Use __dirname here\r\n+  app.use(express.static(path.resolve(__dirname, \"Frontend\", \"build\")));  \r\n+  res.sendFile(path.resolve(__dirname, \"Frontend\", \"dist\", \"index.html\")); \r\n });\r\n \r\n app.listen(8000, () => {\r\n   console.log(\"Server Started\");\r\n"
+                },
+                {
+                    "date": 1736775734006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,7 +19,9 @@\n   app.use(express.static(path.resolve(__dirname, \"Frontend\", \"build\")));  \r\n   res.sendFile(path.resolve(__dirname, \"Frontend\", \"dist\", \"index.html\")); \r\n });\r\n \r\n-app.listen(8000, () => {\r\n-  console.log(\"Server Started\");\r\n+const PORT = process.env.PORT || 8001;\r\n+app.listen(PORT, () => {\r\n+  console.log(`Server running on port ${PORT}`);\r\n });\r\n+\r\n"
+                },
+                {
+                    "date": 1736776191606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n   app.use(express.static(path.resolve(__dirname, \"Frontend\", \"build\")));  \r\n   res.sendFile(path.resolve(__dirname, \"Frontend\", \"dist\", \"index.html\")); \r\n });\r\n \r\n-const PORT = process.env.PORT || 8001;\r\n-app.listen(PORT, () => {\r\n-  console.log(`Server running on port ${PORT}`);\r\n+\r\n+app.use(express.static(path.join(__dirname, 'dist')));\r\n+\r\n+app.listen(8001, () => {\r\n+  console.log('Server is running on port 8001');\r\n });\r\n-\r\n"
+                },
+                {
+                    "date": 1736777260481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \r\n \r\n \r\n app.get(\"/\", (req, res) => {\r\n-  app.use(express.static(path.resolve(__dirname, \"Frontend\", \"build\")));  \r\n+  app.use(express.static(path.resolve(__dirname, \"Frontend\", \"dist\")));  \r\n   res.sendFile(path.resolve(__dirname, \"Frontend\", \"dist\", \"index.html\")); \r\n });\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1736778684027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,20 +9,20 @@\n app.use(express.json());\r\n app.use(cors());\r\n app.use(express.urlencoded({ extended: false }));\r\n \r\n+// API routes\r\n app.use(\"/api/viv\", auth);\r\n app.use(\"/api/list\", List);\r\n \r\n+// Serve static files from the dist folder\r\n+app.use(express.static(path.resolve(__dirname, \"Frontend\", \"dist\")));\r\n \r\n-\r\n-app.get(\"/\", (req, res) => {\r\n-  app.use(express.static(path.resolve(__dirname, \"Frontend\", \"dist\")));  \r\n-  res.sendFile(path.resolve(__dirname, \"Frontend\", \"dist\", \"index.html\")); \r\n+// Catch-all handler for client-side routes\r\n+app.get(\"*\", (req, res) => {\r\n+  res.sendFile(path.resolve(__dirname, \"Frontend\", \"dist\", \"index.html\"));\r\n });\r\n \r\n-\r\n-app.use(express.static(path.join(__dirname, 'dist')));\r\n-\r\n+// Start the server\r\n app.listen(8001, () => {\r\n   console.log('Server is running on port 8001');\r\n });\r\n"
+                }
+            ],
+            "date": 1736688998796,
+            "name": "Commit-0",
+            "content": "const express=require('express');\r\nconst app=express();\r\nconst cors=require(\"cors\");\r\nrequire('./Conn/conn');\r\nconst auth=require('./Router/auth');\r\nconst List=require('./Router/list');\r\nconst path = require(\"path\");\r\n\r\napp.use(express.json()); \r\napp.use(cors()); \r\napp.use(express.urlencoded({extended:false}));\r\n\r\napp.use(\"/api/viv\",auth)\r\napp.use(\"/api/list\",List);\r\n\r\napp.get(\"/\",(req,res)=>{\r\n  res.send(\"Hello\")\r\n})\r\napp.get(\"/\", (req, res) => {\r\n  app.use(express.static(path.resolve(_dirname, \"frontend\", \"build\")));\r\n  res.sendFile(path.resolve(_dirname, \"frontend\", \"build\", \"index.html\"));\r\n  });\r\napp.listen(8000,()=>{\r\n  console.log(\"server Started\");\r\n})"
+        }
+    ]
+}

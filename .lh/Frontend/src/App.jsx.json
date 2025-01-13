@@ -1,0 +1,22 @@
+{
+    "sourceFile": "Frontend/src/App.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1736777389866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1736777443228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import React from 'react';\n-\n import './App.css'\n import 'bootstrap/dist/css/bootstrap.min.css';\n import {\n   createBrowserRouter,\n"
+                }
+            ],
+            "date": 1736777389866,
+            "name": "Commit-0",
+            "content": "import React from 'react';\n\nimport './App.css'\nimport 'bootstrap/dist/css/bootstrap.min.css';\nimport {\n  createBrowserRouter,\n  RouterProvider,\n} from \"react-router-dom\";\nimport  Home  from './Component/Home';\nimport SignUp from './Component/SignUp';\nimport SignIn from './Component/SignIn';\nimport { Top } from './Component/Navbar';\nimport { About } from './Component/About';\nimport { Todo } from './Component/Todo';\nimport { Update } from './Component/Update';\nimport { useEffect } from 'react';\nimport { useDispatch } from 'react-redux';\nimport { authAction } from './Store';\n\n\nfunction App() {\n   const dispatch = useDispatch();\n  useEffect(()=>{\n    const id=sessionStorage.getItem(\"id\");\n    console.log(id)\n    if(id){\n      dispatch(authAction.login())\n    }\n\n  },[])\n  const router=createBrowserRouter([\n  \n    {\n      path:\"/\",\n      element:(<> <Home /> </>)\n    },\n    {\n      path:\"/tasks\",\n      element:(<> <Top /> <Todo />  </>)\n    },\n    {\n      path:\"/signup\",\n      element:(<><Top /> <SignUp />  </>)\n    },\n    {\n      path:\"/signin\",\n      element:(<><Top /> <SignIn />  </>)\n    },\n    {\n      path:\"/about\",\n      element:(<><Top /> <About />    </>)\n    },\n    {\n      path:\"/contact\",\n      element:(<>   </>)\n    },\n    {\n      path:\"/update\",\n      element:(<><Top /> <Update />  </>)\n    }\n  ]);\n  return (\n    <RouterProvider router={router} />  \n  );\n}\n\nexport default App;\n\n"
+        }
+    ]
+}
