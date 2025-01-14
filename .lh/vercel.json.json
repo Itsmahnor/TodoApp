@@ -1,0 +1,18 @@
+{
+    "sourceFile": "vercel.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1736819396618,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1736819396618,
+            "name": "Commit-0",
+            "content": "{\r\n  \"builds\": [\r\n    {\r\n      \"src\": \"Backend/app.js\",\r\n      \"use\": \"@vercel/node\"\r\n    }\r\n  ],\r\n  \"routes\": [\r\n    {\r\n      \"src\": \"/api/(.*)\",\r\n      \"dest\": \"Backend/app.js\"\r\n    },\r\n    {\r\n      \"src\": \"/(.*)\",\r\n      \"dest\": \"Backend/Frontend/dist/$1\"\r\n    }\r\n  ]\r\n}\r\n"
+        }
+    ]
+}
