@@ -13,7 +13,7 @@ const Database=async (req,res) => {
 
      
    } catch (error) {
-     res.status(400).json({message: "Not ConnectedD!"});
+     res.status(400).json({message: "Not Connected!"});
      console.log("Not connected",error)
    }
 }
